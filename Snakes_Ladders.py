@@ -158,27 +158,27 @@ def prequisites():
     return p1_pos, p2_pos
 
 def advanced_logic():
-    global roll, p1_square, p2_square
+    global roll, p1_square, p2_square, turn
     if p1_square in snakes:
+        turn = 1
         destination = snake_end[snakes.index(p1_square)]
-        while p1_square != destination:
-            player_logic(destination - p1_square)
-            pygame.display.flip()
+        player_logic(p1_square - destination)
+        turn = 2
     elif p1_square in ladders:
+        turn = 1
         destination = ladder_end[ladders.index(p1_square)]
-        while p1_square != destination:
-            player_logic(destination - p1_square)
-            pygame.display.flip()
+        player_logic(destination - p1_square)
+        turn = 2
     if p2_square in snakes:
+        turn = 2
         destination = snake_end[snakes.index(p2_square)]
-        while p2_square != destination:
-            player_logic(destination - p2_square)
-            pygame.display.flip()
+        player_logic(p2_square - destination)
+        turn = 1
     elif p2_square in ladders:
+        turn = 2
         destination = ladder_end[ladders.index(p2_square)]
-        while p1_square != destination:
-            player_logic(destination - p2_square)
-            pygame.display.flip()
+        player_logic(destination - p2_square)
+        turn = 1
 
 p1_pos, p2_pos = prequisites()
 
